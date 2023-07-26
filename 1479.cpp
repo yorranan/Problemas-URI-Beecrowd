@@ -1,18 +1,19 @@
 #include <iostream>
 #include <vector>
+#include <climits>
 
 #define MAX 1000
 
-bool adj_matrix[MAX][MAX] = {0};
+unsigned short int weight_matrix[MAX][MAX] = {0};
 
 void removeRoute(unsigned short int U, unsigned short int V)
 {
-    //
+    weight_matrix[U][V] = 0;
 } 
 
 void insertRoute(unsigned short int U, unsigned short int V, unsigned short int W)
 {
-    //
+    weight_matrix[U][V] = W;
 }
 
 short int searchRoute()
