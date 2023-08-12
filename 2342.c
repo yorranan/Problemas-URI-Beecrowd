@@ -4,7 +4,8 @@ int main() {
  
     int N, P, Q;
     char C;
-    scanf("%d%d%c%d", &N, &P, &C, &Q);
+    scanf("%d", &N);
+    scanf("%d %c %d", &P, &C, &Q);
     if (C == '*') 
     {
         P = P*Q;
