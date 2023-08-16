@@ -1,55 +1,50 @@
 #include <iostream>
-#define MAX 500000
+#include <vector>
+#include <algorithm>
 
-int main() 
+using namespace std;
+
+vector<int> tab;
+
+void calc(int a)
 {
-    unsigned int 
-    casos_de_teste, 
-    maior = 0, 
-    aux, maior_pos = 0, 
-    maior_aux = 0,
-    baloes_estourados = 0,
-    baloes[MAX],
-    flecha = 0;
-    bool flecha_caida = false;
-    std::cin >> casos_de_teste;
-    for (unsigned int i = 0; i < casos_de_teste; i++)
+    if (tab[a + 1] == 0)
     {
-        std::cin >> aux;
-        baloes[i] = aux;
-        if (aux > maior) {
-            maior = aux;
-        };
-    }
-    unsigned int i = 0;
-    while (i < casos_de_teste)
+        tab[a] += 1;
+    } 
+    else 
     {
-        if ((maior_aux < baloes[i]) && (baloes[i] != maior))
-        {
-            maior_aux = baloes[i];
-        }
-        if ((baloes[i] == maior) && (flecha_caida == false))
-        {
-            baloes[i] = 0;
-            baloes_estourados++;
-            maior--;
-            if (maior == 0)
-            {
-                flecha_caida = true;
-            }
-        }
-        i++;
-        if ((i == casos_de_teste) && (baloes_estourados <= casos_de_teste))
-        {
-            flecha++;
-            i = 0;
-            flecha_caida = false;
-            if (maior_aux > 0)
-            {
-                maior = maior_aux;
-            }
-            maior_aux = 0;
-        }
+        tab[a + 1] -= 1;
+        tab[a] += 1;
     }
-    std::cout << flecha << std::endl;
 }
+
+int main()
+{
+    for (int i = 0; i < 500000; i++)
+    {
+        tab.push_back(0);
+    }
+
+    int aux, N;
+    vector<int> entrada;
+    cin >> N;
+    for (int i = 0; i < N; i++)
+    {
+        cin >> aux;
+        entrada.push_back(aux);
+    }
+
+    int valorMax = *max_element(entrada.begin(), entrada.end());
+
+    for (int j: entrada)
+    {
+        calc(j);
+    }
+    int soma = 0;
+    for (int j = 0; j < 500000; j++)
+    {
+        soma += tab[j];
+    }
+    printf("%d\n", soma);
+}   
