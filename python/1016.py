@@ -1,0 +1,1 @@
+min = int(input()); print('%i minutos'%(min*2))
